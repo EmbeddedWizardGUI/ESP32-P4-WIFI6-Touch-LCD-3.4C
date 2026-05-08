@@ -1,0 +1,269 @@
+﻿$version 15.02
+
+// This is the root component of the entire GUI application.
+$rect <40,40,240,80>
+$output false
+class Application : Core::Root
+{
+  $rect <820,60,1020,100>
+  inherited property Bounds = <0,0,800,800>;
+
+  $rect <20,20,160,60>
+  object Thermostat::Thermostat Thermostat
+  {
+    preset Bounds = <0,0,800,800>;
+  }
+
+  $rect <820,10,1020,50>
+  inherited method Init()
+  {
+    /* add a round mask for composer to get an impression of a round display... */
+    $if $prototyper
+
+    var Views::Image mask = new Views::Image;
+    mask.Bitmap = Application::RoundMask;
+    mask.Color = #000000C0;
+    mask.Bounds = Bounds.orect;
+    Add( mask, 0 );
+
+    $endif
+
+    idlesignal ResetAutoDemo;
+
+  }
+
+  $rect <1011,13,1211,53>
+  inherited method HandleEvent()
+  {
+    /* each timer the user has touched the screen, the auto demo will be reset */
+    idlesignal ResetAutoDemo;
+
+    return super( aEvent );
+  }
+
+  // Slot method to reset the auto demo.
+  $rect <1020,60,1220,100>
+  slot ResetAutoDemo
+  {
+    sender; /* the method is called from the sender object */
+
+    /* restart the auto demo timer */
+    Thermostat.AutoDemoTimer.Enabled = false;
+    Thermostat.AutoDemoTimer.Enabled = true;
+
+
+  }
+
+  // Directives to adapt the order of the above members according to how these members 
+  // where arranged when the project content was stored. In this manner the storage 
+  // and the expected order of the members don't depend. Merging of changes in the 
+  // project files is simplified.
+  $member Init
+  $member Bounds
+  $member Thermostat
+  $member HandleEvent
+  $member ResetAutoDemo
+
+  // Directives to adapt the order of members belonging to this class so they appear 
+  // correctly arranged relative to the members inherited from the ancestor (super) 
+  // classes. The numbers indicate the order-displacement to apply on the respective 
+  // member once all members have been loaded and combined with members from the 
+  // ancestor classes.
+  $reorder CursorHitTest 1
+  $reorder AdjustDrawingArea 1
+  $reorder ArrangeView 1
+  $reorder MoveView 1
+  $reorder GetExtent 1
+  $reorder ChangeViewState 1
+  $reorder StackingPriority 1
+  $reorder Layout 1
+  $reorder OnSetBounds 1
+  $reorder Bounds 1
+  $reorder first 1
+  $reorder last 1
+  $reorder keyHandlers 1
+  $reorder buffer 1
+  $reorder dialogStack 1
+  $reorder fadersQueue 1
+  $reorder pendingFader 1
+  $reorder extClipLeft 1
+  $reorder extClipRight 1
+  $reorder extClipTop 1
+  $reorder extClipBottom 1
+  $reorder processKeyHandlers 1
+  $reorder updateBufferSlot 1
+  $reorder drawContent 1
+  $reorder recalculateLayout 1
+  $reorder updateComponentWithDelay 1
+  $reorder updateComponent 1
+  $reorder OnGetDeriveEnabledState 1
+  $reorder OnSetDeriveEnabledState 1
+  $reorder OnSetFocus 1
+  $reorder OnGetClipViews 1
+  $reorder OnSetClipViews 1
+  $reorder OnGetBuffered 1
+  $reorder OnSetBuffered 1
+  $reorder OnGetEnabled 1
+  $reorder OnSetEnabled 1
+  $reorder OnSetOpacity 1
+  $reorder OnGetEmbedded 1
+  $reorder OnSetEmbedded 1
+  $reorder OnGetAlphaBlended 1
+  $reorder OnSetAlphaBlended 1
+  $reorder OnGetVisible 1
+  $reorder OnSetVisible 1
+  $reorder ExtendClipping 1
+  $reorder DrawForeground 1
+  $reorder DrawBackground 1
+  $reorder GetMaximalSize 1
+  $reorder GetMinimalSize 1
+  $reorder FindActiveDialogByClass 1
+  $reorder FindDialogByClass 1
+  $reorder FindCurrentDialog 1
+  $reorder IsCurrentDialog 1
+  $reorder IsActiveDialog 1
+  $reorder IsDialog 1
+  $reorder GetIndexOfDialog 1
+  $reorder GetDialogAtIndex 1
+  $reorder CountDialogs 1
+  $reorder SwitchToDialog 1
+  $reorder DismissDialog 1
+  $reorder PresentDialog 1
+  $reorder ObtainFocus 1
+  $reorder HasViewState 1
+  $reorder LocalPosition 1
+  $reorder GlobalPosition 1
+  $reorder DispatchEvent 1
+  $reorder BroadcastEventAtPosition 1
+  $reorder BroadcastEvent 1
+  $reorder UpdateLayout 1
+  $reorder UpdateViewState 1
+  $reorder InvalidateLayout 1
+  $reorder InvalidateViewState 1
+  $reorder InvalidateArea 1
+  $reorder GetIndexOfView 1
+  $reorder GetViewAtIndex 1
+  $reorder CountViews 1
+  $reorder FindViewWithStackingPriority 1
+  $reorder FindViewInDirection 1
+  $reorder FindViewWithinArea 1
+  $reorder FindViewAtPosition 1
+  $reorder FindPrevView 1
+  $reorder FindNextView 1
+  $reorder FindSiblingView 1
+  $reorder GetContentArea 1
+  $reorder FadeGroup 1
+  $reorder RestackBehind 1
+  $reorder RestackBack 1
+  $reorder RestackTop 1
+  $reorder Restack 1
+  $reorder RemoveAll 1
+  $reorder Remove 1
+  $reorder AddBehind 1
+  $reorder Add 1
+  $reorder DeriveEnabledState 1
+  $reorder Focus 1
+  $reorder ClipViews 1
+  $reorder Buffered 1
+  $reorder Enabled 1
+  $reorder Opacity 1
+  $reorder Embedded 1
+  $reorder AlphaBlended 1
+  $reorder Visible 1
+  $reorder keyLastLocked 1
+  $reorder keyLastCharCode 1
+  $reorder keyLastCode 1
+  $reorder keyLastTarget 1
+  $reorder hasRootFocus 1
+  $reorder updateLock 1
+  $reorder animationLock 1
+  $reorder modalGroups 1
+  $reorder currentEventTimestamp 1
+  $reorder createDragEvent 1
+  $reorder createCursorEvent 1
+  $reorder createCursorGrabEvent 1
+  $reorder cursorHoldTimerProc 1
+  $reorder cursorHoldTimer 1
+  $reorder cursorSequelCounter 1
+  $reorder cursorSequelArea 1
+  $reorder cursorHoldPeriod 1
+  $reorder cursorHittingPos 1
+  $reorder cursorHittingTime 1
+  $reorder cursorCaptureView 1
+  $reorder cursorCurrentPos 1
+  $reorder cursorTargetView 1
+  $reorder cursorHitOffset 1
+  $reorder cursorLastPos 1
+  $reorder cursorFirstPos 1
+  $reorder cursorFinger 1
+  $reorder fpsTime 1
+  $reorder fpsCounter 1
+  $reorder lastRegions 1
+  $reorder noOfLastRegions 1
+  $reorder canvas 1
+  $reorder regionsArea 1
+  $reorder regions 1
+  $reorder noOfRegions 1
+  $reorder GetFPS 1
+  $reorder Update 1
+  $reorder UpdateGE20 1
+  $reorder EndUpdate 1
+  $reorder UpdateCanvas 1
+  $reorder GetUpdateRegion 1
+  $reorder BeginUpdate 1
+  $reorder DoesNeedUpdate 1
+  $reorder Initialize 1
+  $reorder SetRootFocus 1
+  $reorder SetUserInputTimestamp 1
+  $reorder DriveKeyboardHitting 1
+  $reorder DriveCursorMovement 1
+  $reorder DriveMultiTouchMovement 1
+  $reorder DriveCursorHitting 1
+  $reorder DriveMultiTouchHitting 1
+  $reorder OnGetActiveDialogClass 1
+  $reorder OnSetActiveDialogClass 1
+  $reorder OnGetActiveDialog 1
+  $reorder OnSetActiveDialog 1
+  $reorder OnSetVirtualKeyboard 1
+  $reorder OnSetCursorDragLimit 1
+  $reorder OnSetCursorSequelDelay 1
+  $reorder OnGetStyles 1
+  $reorder OnSetStyles 1
+  $reorder OnGetLanguage 1
+  $reorder OnSetLanguage 1
+  $reorder EndAnimation 1
+  $reorder BeginAnimation 1
+  $reorder CaptureCursor 1
+  $reorder RetargetCursorWithReason 1
+  $reorder RetargetCursor 1
+  $reorder DeflectCursor 1
+  $reorder GetModalGroup 1
+  $reorder EndModal 1
+  $reorder BeginModal 1
+  $reorder ActiveDialogClass 1
+  $reorder ActiveDialog 1
+  $reorder VirtualKeyboard 1
+  $reorder CursorDragLimit 1
+  $reorder CursorSequelDelay 1
+  $reorder Styles 1
+  $reorder Language 1
+  $reorder Thermostat 1
+}
+
+// Application class of the example
+note group Note4
+{
+  attr Bounds = <20,0,660,100>;
+}
+
+$rect <250,40,450,80>
+$output false
+resource Resources::Bitmap RoundMask
+{
+  attr bitmapfile FileName = .\Res\800x800Mask.png;
+  attr framesize FrameSize;
+  attr framedelay FrameDelay;
+  attr bitmapformat Format = Alpha8;
+  attr bitmapdithering Dithering = Auto;
+  attr bitmapmode Mode = Default;
+}
