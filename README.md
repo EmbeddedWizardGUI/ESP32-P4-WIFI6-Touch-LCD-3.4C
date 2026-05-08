@@ -1,6 +1,6 @@
 # Embedded Wizard Build Environment for Waveshare ESP32-P4-WIFI6-Touch-LCD-3.4C
 
-![Screenshots](https://doc.embedded-wizard.de/data/Other/GitHub/ESP32-P4-WIFI6-Touch-LCD-3.4C/screenshots_v1.jpg)
+![Screenshots](https://doc.embedded-wizard.de/data/Other/GitHub/ESP32-P4-WIFI6-Touch-LCD-3.4C/screenshots_v2.jpg)
 
 ## About Embedded Wizard
 
